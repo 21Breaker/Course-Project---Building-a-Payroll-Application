@@ -38,7 +38,7 @@ public class LoginWindow extends JFrame {
 
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(10, 80, 80, 25);
-       );
+        panel.add(loginButton);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -48,13 +48,15 @@ public class LoginWindow extends JFrame {
                 if (validateLogin(userID, password)) {
                     JOptionPane.showMessageDialog(panel, "Login Successful");
                     openMainWindow();
-               Dialog(panel, "Invalid User ID or Password");
+                } else {
+                    JOptionPane.showMessageDialog(panel, "Invalid User ID or Password");
                 }
             }
         });
     }
 
     private boolean validateLogin(String userID, String password) {
+        // Dummy validation logic
         return userID.equals("admin") && password.equals("password");
     }
 
