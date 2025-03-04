@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginWindow extends JFrame {
     private JTextField userText;
@@ -56,8 +57,9 @@ public class LoginWindow extends JFrame {
     }
 
     private boolean validateLogin(String userID, String password) {
-        // Dummy validation logic
-        return userID.equals("admin") && password.equals("password");
+        // Dummy hashed password for demonstration purposes
+        String storedHash = "$2a$10$DowJ8J8J8J8J8J8J8J8J8uJ8J8J8J8J8J8J8J8J8J8J8J8J8J8J8";
+        return userID.equals("admin") && BCrypt.checkpw(password, storedHash);
     }
 
     private void openMainWindow() {
