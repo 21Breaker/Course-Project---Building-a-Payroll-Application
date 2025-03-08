@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
-import org.mindrot.jbcrypt.BCrypt;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginWindow extends JFrame {
     private JTextField userText;
@@ -63,8 +64,8 @@ public class LoginWindow extends JFrame {
 
     private boolean validateLogin(String userID, String password) {
         // Dummy hashed password for demonstration purposes
-        String storedHash = "$2a$10$DowJ8J8J8J8J8J8J8J8J8uJ8J8J8J8J8J8J8J8J8J8J8J8J8J8J8";
-        return userID.equals("admin") && BCrypt.checkpw(password, storedHash);
+        String storedHash = "5e884898da28047151d0e56f8dc6292773603d0d6aabbddf1a6a40f5a4a6d4b7"; // Hash for "password"
+        return userID.equals("admin") && PasswordUtil.hashPassword(password).equals(storedHash);
     }
 
     private void openMainWindow() {
