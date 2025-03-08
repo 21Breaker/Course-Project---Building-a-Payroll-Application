@@ -1,0 +1,67 @@
++-------------------------+
+|       LoginWindow       |
++-------------------------+
+| - userText: JTextField  |
+| - passwordText: JPasswordField |
+| - userTypeCombo: JComboBox<String> |
+| - userCredentials: Map<String, String> |
++-------------------------+
+| + validateLogin(userID: String, password: String): boolean |
+| + openMainWindow(userType: String): void |
++-------------------------+
+
++-------------------------+
+|    AdminMainWindow      |
++-------------------------+
+| + openEmployeeManagement(): void |
+| + openPayrollManagement(): void |
+| + generateReports(): void |
++-------------------------+
+
++-------------------------+
+|   EmployeeMainWindow    |
++-------------------------+
+| + enterHoursWorked(): void |
+| + enterPTO(): void |
+| + calculatePaycheck(): void |
++-------------------------+
+
++-------------------------+
+| EmployeeManagementWindow|
++-------------------------+
+| - nameText: JTextField  |
+| - idText: JTextField    |
+| - employeeList: JTextArea |
+| - employees: Map<String, Employee> |
++-------------------------+
+| + addEmployee(): void   |
+| + editEmployee(): void  |
+| + deleteEmployee(): void |
+| + updateEmployeeList(): void |
++-------------------------+
+
++-------------------------+
+|  PayrollManagementWindow|
++-------------------------+
+| - employeeIdText: JTextField |
+| - hoursWorkedText: JTextField |
+| - hourlyRateText: JTextField |
+| - payrollInfo: JTextArea |
+| - payrollData: Map<String, Double> |
++-------------------------+
+| + calculatePayroll(): void |
+| + viewPayrollInfo(): void |
++-------------------------+
+
++-------------------------+
+|        Employee         |
++-------------------------+
+| - name: String          |
+| - email: String         |
+| - dob: String           |
++-------------------------+
+| + getName(): String     |
+| + setName(name: String): void |
+| + getEmail(): String    |
+| + getDob(): String      |
++-------------------------+
