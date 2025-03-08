@@ -1,8 +1,12 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Example {
     public static void main(String[] args) {
         // Admin password
         String adminPassword = "Jolly202050+!";
-        String adminHashedPassword = PasswordUtil.hashPassword(adminPassword);
+        String adminHashedPassword = hashPassword(adminPassword);
+        System.out.println("Admin Password: " + adminPassword);
         System.out.println("Admin Hashed password: " + adminHashedPassword);
 
         // Employee data
@@ -39,8 +43,25 @@ public class Example {
         for (int i = 0; i < employeeEmails.length; i++) {
             String email = employeeEmails[i];
             String password = employeePasswords[i];
-            String hashedPassword = PasswordUtil.hashPassword(password);
-            System.out.println(email + " Hashed password: " + hashedPassword);
+            String hashedPassword = hashPassword(password);
+            System.out.println("Email: " + email);
+            System.out.println("Password: " + password);
+            System.out.println("Hashed password: " + hashedPassword);
+        }
+    }
+
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
 }

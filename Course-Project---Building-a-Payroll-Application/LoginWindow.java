@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
@@ -18,19 +20,19 @@ public class LoginWindow extends JFrame {
 
         userCredentials = new HashMap<>();
         // Add user credentials (user ID and hashed password)
-        userCredentials.put("HR0001", PasswordUtil.hashPassword("Jolly202050+!"));
-        userCredentials.put("john.doe@example.com", PasswordUtil.hashPassword("19850115"));
-        userCredentials.put("jane.smith@example.com", PasswordUtil.hashPassword("19900220"));
-        userCredentials.put("alice.johnson@example.com", PasswordUtil.hashPassword("19870330"));
-        userCredentials.put("bob.brown@example.com", PasswordUtil.hashPassword("19881210"));
-        userCredentials.put("charlie.davis@example.com", PasswordUtil.hashPassword("19910505"));
-        userCredentials.put("diana.evans@example.com", PasswordUtil.hashPassword("19860625"));
-        userCredentials.put("ethan.foster@example.com", PasswordUtil.hashPassword("19930315"));
-        userCredentials.put("fiona.green@example.com", PasswordUtil.hashPassword("19891120"));
-        userCredentials.put("george.harris@example.com", PasswordUtil.hashPassword("19870410"));
-        userCredentials.put("hannah.irving@example.com", PasswordUtil.hashPassword("19901230"));
-        userCredentials.put("ian.jackson@example.com", PasswordUtil.hashPassword("19880525"));
-        userCredentials.put("julia.king@example.com", PasswordUtil.hashPassword("19920715"));
+        userCredentials.put("HR0001", hashPassword("Jolly202050+!"));
+        userCredentials.put("john.doe@example.com", hashPassword("19850115"));
+        userCredentials.put("jane.smith@example.com", hashPassword("19900220"));
+        userCredentials.put("alice.johnson@example.com", hashPassword("19870330"));
+        userCredentials.put("bob.brown@example.com", hashPassword("19881210"));
+        userCredentials.put("charlie.davis@example.com", hashPassword("19910505"));
+        userCredentials.put("diana.evans@example.com", hashPassword("19860625"));
+        userCredentials.put("ethan.foster@example.com", hashPassword("19930315"));
+        userCredentials.put("fiona.green@example.com", hashPassword("19891120"));
+        userCredentials.put("george.harris@example.com", hashPassword("19870410"));
+        userCredentials.put("hannah.irving@example.com", hashPassword("19901230"));
+        userCredentials.put("ian.jackson@example.com", hashPassword("19880525"));
+        userCredentials.put("julia.king@example.com", hashPassword("19920715"));
 
         JPanel panel = new JPanel(new GridBagLayout());
         add(panel);
@@ -94,7 +96,7 @@ public class LoginWindow extends JFrame {
     private boolean validateLogin(String userID, String password) {
         if (userCredentials.containsKey(userID)) {
             String storedHash = userCredentials.get(userID);
-            return PasswordUtil.hashPassword(password).equals(storedHash);
+            return hashPassword(password).equals(storedHash);
         }
         return false;
     }
@@ -108,6 +110,21 @@ public class LoginWindow extends JFrame {
             employeeMainWindow.setVisible(true);
         }
         dispose();
+    }
+
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {
