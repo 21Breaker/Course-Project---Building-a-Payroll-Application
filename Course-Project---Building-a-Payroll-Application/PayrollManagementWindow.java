@@ -1,15 +1,13 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.*;
 
 public class PayrollManagementWindow extends JFrame {
     private JTextField employeeIdText;
     private JTextField hoursWorkedText;
     private JTextField hourlyRateText;
     private JTextArea payrollInfo;
-    private Map<String, Double> payrollData;
+    private final Map<String, Double> payrollData;
 
     public PayrollManagementWindow() {
         setTitle("Payroll Management");
@@ -63,19 +61,8 @@ public class PayrollManagementWindow extends JFrame {
         payrollInfo.setBounds(10, 150, 560, 200);
         panel.add(payrollInfo);
 
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                calculatePayroll();
-            }
-        });
-
-        viewPayrollButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewPayrollInfo();
-            }
-        });
+        calculateButton.addActionListener(e -> calculatePayroll());
+        viewPayrollButton.addActionListener(e -> viewPayrollInfo());
     }
 
     private void calculatePayroll() {
