@@ -1,4 +1,4 @@
-Test Case ID	1.Description	2.Steps	3.Expected Result	4.Actual Result	Status
+Test Case ID	1. Description	2. Steps	3. Expected Result	4. Actual Result	Status
 TC001	Login with valid credentials	1. Open the application. 2. Enter valid User ID and Password. 3. Select User Type. 4. Click "Login".	User is logged in successfully.		
 TC002	Login with invalid credentials	1. Open the application. 2. Enter invalid User ID or Password. 3. Select User Type. 4. Click "Login".	Error message is displayed.		
 TC003	Add a new employee	1. Login as Admin. 2. Navigate to Employee Management. 3. Enter employee details. 4. Click "Add".	Employee is added successfully.		
